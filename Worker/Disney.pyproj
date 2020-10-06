@@ -3,13 +3,14 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>d6331af3-7f07-4226-bb5c-ebf2494f49b7</ProjectGuid>
-    <ProjectHome>.</ProjectHome>
-    <StartupFile>Worker.py</StartupFile>
+    <ProjectHome>
+    </ProjectHome>
+    <StartupFile>Worker_Alone.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
-    <Name>Worker</Name>
+    <Name>Disney</Name>
     <RootNamespace>Worker</RootNamespace>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
@@ -21,7 +22,19 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Worker.py" />
+    <Compile Include="consumer.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="producer.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="resultcollector.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Worker_Alone.py" />
+    <Compile Include="Worker_module.py">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
