@@ -22,7 +22,13 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="consumer.py">
+    <Compile Include="frame_recv.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="frame_send.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="worker.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="producer.py">
