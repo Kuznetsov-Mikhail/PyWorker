@@ -4,17 +4,17 @@ import base64
 import numpy as np
 
 context = zmq.Context()
-footage_socket = context.socket(zmq.SUB)
+footage_socket = context.socket(zmq.PULL)
 footage_socket.bind('tcp://*:5555')
-footage_socket.setsockopt_string(zmq.SUBSCRIBE, unicode(''))
+
 
 while True:
     try:
-        frame = footage_socket.recv_string()
-        img = base64.b64decode(frame)
-        npimg = np.fromstring(img, dtype=np.uint8)
-        source = cv2.imdecode(npimg, 1)
-        cv2.imshow("image", source)
+        data = footage_socket.recv_json()
+        frame = base64.b64decode(data['frame'])
+        frame = np.fromstring(frame, dtype=np.uint8)
+        frame = cv2.imdecode(frame, 1)
+        cv2.imshow("image", frame)
         cv2.waitKey(1)
 
     except KeyboardInterrupt:

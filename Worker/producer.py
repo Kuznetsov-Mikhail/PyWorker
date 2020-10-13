@@ -7,16 +7,18 @@ cap = cv2.VideoCapture(0)
 def producer():
     context = zmq.Context()
     producer_sender = context.socket(zmq.PUSH)
-    producer_sender.bind("tcp://127.0.0.1:5557")
+    producer_sender.connect("tcp://127.0.0.1:5557")
     print('producer_sender.bind done')
     ########################################
     num = 0
     while(True):
         try:
             _, frame = cap.read()
-            frame = cv2.resize(frame, (640, 480))
-            work_message = { 'num' : num, 'frame':(frame) }
-            producer_sender.send_json(work_message)
+            frame = cv2.resize(frame, (640, 480))  # resize the frame
+            _, frame = cv2.imencode('.jpg', frame)
+            frame = base64.b64encode(frame).decode("utf-8")
+            data = {'index':num, 'frame':frame}
+            producer_sender.send_json(data)
             num+=1 
         except KeyboardInterrupt:
             cap.release()

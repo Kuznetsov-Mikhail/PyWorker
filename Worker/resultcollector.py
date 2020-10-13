@@ -12,6 +12,9 @@ def result_collector():
     collecter_data = {}
     while(True):
         result = results_receiver.recv_json()
-        print(result['num'])
+        frame = base64.b64decode(result['frame'])
+        frame = np.fromstring(frame, dtype=np.uint8)
+        frame = cv2.imdecode(frame, 1)
+        cv2.imshow("result", frame)
 result_collector()
 
