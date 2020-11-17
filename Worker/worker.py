@@ -11,10 +11,10 @@ print("I am worker #%s"%(consumer_id))
 context = zmq.Context()
 # recieve work
 consumer_receiver = context.socket(zmq.PULL)
-consumer_receiver.connect("tcp://localhost:5555")
+consumer_receiver.connect("tcp://192.168.1.130:5555")
 # send work
 consumer_sender = context.socket(zmq.PUSH)
-consumer_sender.connect('tcp://localhost:5556')
+consumer_sender.connect('tcp://192.168.1.61:5556')
 print('connect done\n')  
 while True:
     try:
