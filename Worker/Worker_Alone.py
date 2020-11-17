@@ -1,6 +1,6 @@
 import cv2
 from Worker_module import worker
-cap = cv2.VideoCapture(0)
+cap = cv2.VideoCapture('http://guest:guest@192.168.9.134/video1.mjpg')
 while(True):
     _, frame = cap.read()
     frame = cv2.resize(frame, (320, 240))  # resize the frame
